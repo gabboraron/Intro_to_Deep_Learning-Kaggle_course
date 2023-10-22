@@ -12,5 +12,9 @@ Use TensorFlow and Keras to build and train neural networks for structured data.
 
 ### The Linear Unit
 > So let's begin with the fundamental component of a neural network: the individual neuron. As a diagram, a neuron (or unit) with one input looks like:
->
->  ![neuron](https://storage.googleapis.com/kaggle-media/learn/images/mfOlDR6.png) The Linear Unit: $y=wx+b$ 
+
+![neuron](https://storage.googleapis.com/kaggle-media/learn/images/mfOlDR6.png) 
+
+The Linear Unit: $y=wx+b$ Does the formula looks familiar?  It's an equation of a line! It's the slope-intercept equation, where $w$ is the slope and $b$ is the y-intercept. 
+
+## Example - The Linear Unit as a Model
