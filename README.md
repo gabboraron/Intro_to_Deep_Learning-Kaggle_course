@@ -21,11 +21,14 @@ The Linear Unit: $y=wx+b$ Does the formula looks familiar?  It's an equation of 
 Though individual neurons will usually only function as part of a larger network, it's often useful to start with a single neuron model as a baseline. ***Single neuron models are linear models.***
 
 Based on the [80 Cereals](https://www.kaggle.com/datasets/crawford/80-cereals) dataset we could estimate the calorie content of a cereal with 5 grams of sugar per serving like this:
+
 ![Computing with the linear unit](https://storage.googleapis.com/kaggle-media/learn/images/yjsfFvY.png)
 *Training a model with 'sugars' (grams of sugars per serving) as input and 'calories' (calories per serving) as output, we might find the bias is b=90 and the weight is w=2.5.*
 
 ### Multiple Inputs
 What if we wanted to expand our model to include things like fiber or protein content? That's easy enough. We can just add more input connections to the neuron, one for each additional feature. To find the output, we would multiply each input to its connection weight and then add them all together.
-![A linear unit with three inputs. ](https://storage.googleapis.com/kaggle-media/learn/images/vyXSnlZ.png) 
+
+![A linear unit with three inputs](https://storage.googleapis.com/kaggle-media/learn/images/vyXSnlZ.png)
+
 The formula for this neuron would be $y=w0x0+w1x1+w2x2+b$. A linear unit with two inputs will fit a plane, and a unit with more inputs than that will fit a [hyperplane](https://mathworld.wolfram.com/Hyperplane.html).
 
