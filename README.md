@@ -32,3 +32,13 @@ What if we wanted to expand our model to include things like fiber or protein co
 
 The formula for this neuron would be $y=w0x0+w1x1+w2x2+b$. A linear unit with two inputs will fit a plane, and a unit with more inputs than that will fit a [hyperplane](https://mathworld.wolfram.com/Hyperplane.html).
 
+### Linear Units in [Keras](https://keras.io)
+
+The easiest way to create a model in Keras is through `keras.Sequential`, which creates a neural network as a stack of layers. We can create models like those above using a dense layer (which we'll learn more about in the next lesson).
+
+
+
+
+
+
+### 
