@@ -74,8 +74,32 @@ print("Weights\n{}\n\nBias\n{}".format(w, b))
 
 
 
+----
 
 
 
 
-### 
+
+### Stacking Dense Layers
+***Now that we have some nonlinearity, let's see how we can stack layers to get complex data transformations.***
+
+![A stack of dense layers makes a "fully-connected" network](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/Y5iwFQZ.png)
+*A stack of dense layers makes a "fully-connected" network.*
+
+
+The layers before the output layer are sometimes called hidden since we never see their outputs directly. Now, notice that the final (output) layer is a linear unit (meaning, no activation function). **That makes this network appropriate to a [regression](https://www.ssla.co.uk/regression-in-ai/) task, where we are trying to predict some arbitrary numeric value.** Other tasks (like **[classification](https://www.simplilearn.com/tutorials/machine-learning-tutorial/classification-in-machine-learning)**) **might require an activation function on the output**. *Remember, Classification is the task of predicting a discrete class label. Regression is the task of predicting a continuous quantity. [h2o.ai](https://h2o.ai/wiki/classification/)*
+
+#### Building Sequential Models
+The [Sequential model](https://keras.io/guides/sequential_model/) we've been using will connect together a list of layers in order from first to last: the first layer gets the input, the last layer produces the output. This creates the model in the figure above. Be sure to pass all the layers together in a list, like `[layer, layer, layer, ...]`, instead of as separate arguments. To add an `activation` function to a layer, just give its name in the activation argument. *[More about sequential models](https://en.wikipedia.org/wiki/Sequential_model)*
+````Python
+from tensorflow import keras
+from tensorflow.keras import layers
+
+model = keras.Sequential([
+    # the hidden ReLU layers
+    layers.Dense(units=4, activation='relu', input_shape=[2]),
+    layers.Dense(units=3, activation='relu'),
+    # the linear output layer 
+    layers.Dense(units=1),
+])
+````
