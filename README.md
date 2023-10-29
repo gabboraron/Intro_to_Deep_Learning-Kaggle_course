@@ -75,9 +75,30 @@ print("Weights\n{}\n\nBias\n{}".format(w, b))
 
 
 ----
+> ####  Many Kinds of Layers
+>
+>  A ["layer" in Keras](https://www.tensorflow.org/api_docs/python/tf/keras/layers) is a very general kind of thing. A layer can be, essentially, any kind of data transformation. Many layers, like the [convolutional](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D) and [recurrent](https://www.tensorflow.org/api_docs/python/tf/keras/layers/RNN) layers, transform data through use of neurons and differ primarily in the pattern of connections they form. Others though are used for feature engineering or just simple arithmetic. There's a whole world of layers to discover!
+>
+> *more:*
+> - https://techvidvan.com/tutorials/keras-layers/
+> - https://keras.io/api/layers/core_layers/
+> - https://www.tutorialspoint.com/keras/keras_layers.htm
 
+### The Activation Function
 
+It turns out, however, that two dense layers with nothing in between are no better than a single dense layer by itself. Dense layers by themselves can never move us out of the world of lines and planes. What we need is something nonlinear. What we need are activation functions. An activation function is simply some function we apply to each of a layer's outputs (its activations). The most common is the rectifier function $max(0,x)$.
 
+| ![Without activation functions, neural networks can only learn linear relationships](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/OLSUEYT.png) | ![the rectifier function](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/eFry7Yu.png) |
+| ------ | ------- |
+| *Without activation functions, neural networks can only learn linear relationships. In order to fit curves, we'll need to use activation functions.* | *The Rectifier Function* |
+
+The rectifier function has a graph that's a line with the negative part "rectified" to zero. Applying the function to the outputs of a neuron will put a bend in the data, moving us away from simple lines.
+
+When we attach the rectifier to a linear unit, we get a rectified linear unit or ReLU. (For this reason, it's common to call the rectifier function the "ReLU function".) Applying a ReLU activation to a linear unit means the output becomes `max(0, w * x + b)`, which we might draw in a diagram like:
+
+![A rectified linear unit](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/eFry7Yu.png)
+
+*A rectified linear unit.*
 
 
 ### Stacking Dense Layers
