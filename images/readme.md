@@ -1,0 +1,1 @@
+This folder contains the images related to this lecture. The images mostly are from the original Kaggle course. You can find the exact source at the description of the specific image.
