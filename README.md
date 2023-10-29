@@ -70,11 +70,17 @@ print("Weights\n{}\n\nBias\n{}".format(w, b))
 
 *Keras represents weights as tensors, but also uses tensors to represent data. When you set the input_shape argument, you are telling Keras the dimensions of the array it should expect for each example in the training data. Setting `input_shape=[3]` would create a network accepting vectors of length 3, like [0.2, 0.4, 0.6].*
 
+## Layers
+> The key idea here is modularity, building up a complex network from simpler functional units. We've seen how a linear unit computes a linear function -- now we'll see how to combine and modify these single units to model more complex relationships.
 
+![A dense layer of two linear units receiving two inputs and a bias](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/2MA4iMV.png)
 
+*A dense layer of two linear units receiving two inputs and a bias.*
 
+Neural networks typically organize their neurons into layers. When we collect together linear units having a common set of inputs we get a dense layer.
 
-----
+You could think of each layer in a neural network as performing some kind of relatively simple transformation. Through a deep stack of layers, a neural network can transform its inputs in more and more complex ways. In a well-trained neural network, each layer is a transformation getting us a little bit closer to a solution.
+
 > ####  Many Kinds of Layers
 >
 >  A ["layer" in Keras](https://www.tensorflow.org/api_docs/python/tf/keras/layers) is a very general kind of thing. A layer can be, essentially, any kind of data transformation. Many layers, like the [convolutional](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D) and [recurrent](https://www.tensorflow.org/api_docs/python/tf/keras/layers/RNN) layers, transform data through use of neurons and differ primarily in the pattern of connections they form. Others though are used for feature engineering or just simple arithmetic. There's a whole world of layers to discover!
