@@ -1,9 +1,10 @@
-> ***NOTE!***
->
-> *This is my personal note from the course, and related sources. Before this course Highly recommend [Computer Aided Solution Processing](https://github.com/gabboraron/Computer_Aided_Solution_Processing) and [Artificial Intelligence - Intelligent agents paradigm](https://github.com/gabboraron/artificial_intelligence-intelligent_agents_paradigm) courses.*
+> ***NOTE! This is my personal note from the [Kaggle course](https://www.kaggle.com/learn/intro-to-deep-learning), and related sources. Before this course Highly recommend [Computer Aided Solution Processing](https://github.com/gabboraron/Computer_Aided_Solution_Processing) and [Artificial Intelligence - Intelligent agents paradigm](https://github.com/gabboraron/artificial_intelligence-intelligent_agents_paradigm) courses.***
+----------
 
 # Intro to Deep Learning
 Use TensorFlow and Keras to build and train neural networks for structured data.
+
+The Course was written by [Ryan Holbrook](https://www.kaggle.com/ryanholbrook) and Builds on [Intro to Machine Learning Kaggle course](https://www.kaggle.com/learn/intro-to-machine-learning). You can find [my notes about that here](https://github.com/gabboraron/Intro_to_Machine_Learning-Kaggle).
 
 ## A Single Neuron
 file:[exercise-a-single-neuron.ipynb](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/exercise-a-single-neuron.ipynb)
@@ -133,6 +134,8 @@ model = keras.Sequential([
 ````
 
 ## Stochastic Gradient Descent
+file:[.ipynb]()
+
 > As with all machine learning tasks, we begin with a set of training data. Each example in the training data consists of some features (the inputs) together with an expected target (the output). Training the network means adjusting its weights in such a way that it can transform the features into the target. In the 80 Cereals dataset, for instance, we want a network that can take each cereal's `'sugar'`, `'fiber'`, and `'protein'` content and produce a prediction for that cereal's `'calories'`. If we can successfully train a network to do that, its weights must represent in some way the relationship between those features and that target as expressed in the training data.
 >
 > In addition to the training data, we need two more things
@@ -141,7 +144,39 @@ model = keras.Sequential([
 
 
 ### The Loss Function
-We've seen how to design an architecture for a network, but we haven't seen how to tell a network what problem to solve. This is the job of the loss function.
+We've seen how to design an architecture for a network, but we haven't seen how to tell a network what problem to solve. ***This is the job of the loss function.***
 
-The loss function measures the disparity between the the target's true value and the value the model predicts.
+**The loss function measures the disparity between the the target's true value and the value the model predicts.**
+
+Different problems call for different loss functions. We have been looking at regression problems, where the task is to predict some numerical value -- calories in 80 Cereals, rating in Red Wine Quality. Other regression tasks might be predicting the price of a house or the fuel efficiency of a car.
+
+A common loss function for regression problems is the [mean absolute error](https://www.statisticshowto.com/absolute-error/) or MAE. For each prediction `y_pred`, MAE measures the disparity from the true target `y_true` by an absolute difference `abs(y_true - y_pred)`. 
+
+The total MAE loss on a dataset is the mean of all these absolute differences.
+
+$$MAE=\frac{1}{n}\sum_{i=1}^n{x_i-x}$$
+
+*Where Where: n = the number of errors; |xi – x| = the absolute errors.*
+
+![loss function](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/VDcvkZN.png)
+
+*The mean absolute error is the average length between the fitted curve and the data points.*
+
+Besides MAE, other loss functions you might see for regression problems are the mean-squared error (MSE) or the Huber loss (both available in Keras).
+
+During training, the model will use the loss function as a guide for finding the correct values of its weights (lower loss is better). In other words, the loss function tells the network its objective.
+The Optimizer - Stochastic Gradient Descent
+
+We've described the problem we want the network to solve, but now we need to say how to solve it. This is the job of the optimizer. The optimizer is an algorithm that adjusts the weights to minimize the loss.
+
+Virtually all of the optimization algorithms used in deep learning belong to a family called stochastic gradient descent. They are iterative algorithms that train a network in steps. One step of training goes like this
+
+- Sample some training data and run it through the network to make predictions.
+- Measure the loss between the predictions and the true values
+- Finally, adjust the weights in a direction that makes the loss smaller.
+
+Then just do this over and over until the loss is as small as you like (or until it won't decrease any further.)
+
+
+
 
