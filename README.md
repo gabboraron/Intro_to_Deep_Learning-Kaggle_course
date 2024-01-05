@@ -169,7 +169,7 @@ The Optimizer - Stochastic Gradient Descent
 
 We've described the problem we want the network to solve, but now we need to say how to solve it. This is the job of the optimizer. The optimizer is an algorithm that adjusts the weights to minimize the loss.
 
-Virtually all of the optimization algorithms used in deep learning belong to a family called stochastic gradient descent. They are iterative algorithms that train a network in steps. One step of training goes like this
+Virtually all of the optimization algorithms used in deep learning belong to a family called [stochastic gradient descent](https://scikit-learn.org/stable/modules/sgd.html). They are iterative algorithms that train a network in steps. One step of training goes like this:
 
 - Sample some training data and run it through the network to make predictions.
 - Measure the loss between the predictions and the true values
@@ -177,6 +177,44 @@ Virtually all of the optimization algorithms used in deep learning belong to a f
 
 Then just do this over and over until the loss is as small as you like (or until it won't decrease any further.)
 
+![sstochastic gradient descent](https://github.com/gabboraron/Intro_to_Deep_Learning-Kaggle_course/blob/main/images/rFI1tIk.gif)
 
+*Training a neural network with Stochastic Gradient Descent (SGD).*
 
+Each iteration's sample of training data is called a **minibatch** (or often just **"batch"**), while a complete round of the training data is called an **epoch**. The number of epochs you train for is how many times the network will see each training example.
+
+The animation shows the linear model from Lesson 1 being trained with [SGD](https://scikit-learn.org/stable/modules/sgd.html). The pale red dots depict the entire training set, while the solid red dots are the minibatches. Every time SGD sees a new minibatch, it will shift the weights *(`w` the slope and `b` the y-intercept)* toward their correct values on that batch. Batch after batch, the line eventually converges to its best fit. You can see that the loss gets smaller as the weights get closer to their true values.
+
+### Learning Rate and Batch Size
+
+Notice that the line only makes a small shift in the direction of each batch (instead of moving all the way). The size of these shifts is determined by the learning rate. A smaller learning rate means the network needs to see more minibatches before its weights converge to their best values.
+
+The *learning rate* and the *size of the minibatches* are the two parameters that have the largest effect on how the SGD training proceeds. Their interaction is often subtle and the right choice for these parameters isn't always obvious. (We'll explore these effects in the exercise.)
+
+Fortunately, for most work it won't be necessary to do an extensive hyperparameter search to get satisfactory results. [Adam is an SGD algorithm](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/) that has an adaptive learning rate that makes it suitable for most problems without any parameter tuning (it is "self tuning", in a sense). Adam is a great general-purpose optimizer.
+
+### Adding the Loss and Optimizer
+
+After defining a model, you can add a loss function and optimizer with the model's compile method:
+
+```Python
+model.compile(
+    optimizer="adam",
+    loss="mae",
+)
+```
+
+*Notice that we are able to specify the loss and optimizer with just a string. You can also access these directly through the Keras API -- if you wanted to tune parameters, for instance -- but for us, the defaults will work fine.*
+
+    What's In a Name?
+    The gradient is a vector that tells us in what direction the weights need to go. More precisely, it tells us how to change the weights to make the loss change fastest. We call our process gradient descent because it uses the gradient to descend the loss curve towards a minimum. Stochastic means "determined by chance." Our training is stochastic because the minibatches are random samples from the dataset. And that's why it's called SGD! 
+
+Example - Red Wine Quality
+
+Now we know everything we need to start training deep learning models. So let's see it in action! We'll use the Red Wine Quality dataset.
+
+This dataset consists of physiochemical measurements from about 1600 Portuguese red wines. Also included is a quality rating for each wine from blind taste-tests. How well can we predict a wine's perceived quality from these measurements?
+
+We've put all of the data preparation into this next hidden cell. It's not essential to what follows so feel free to skip it. One thing you might note for now though is that we've rescaled each feature to lie in the interval [0,1]
+. As we'll discuss more in Lesson 5, neural networks tend to perform best when their inputs are on a common scale.
 
